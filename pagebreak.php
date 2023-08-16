@@ -2,8 +2,8 @@
 /*
 Plugin Name: pagebreak
 Plugin URI: https://eris.nu
-Description:
-Version: 1.0.0
+Description: Add page break to text editor and tinymce editor. Copied from other websites... 
+Version: 1.0.2
 Author: Jaap Marcus
 Author URI:  https://eris.nu
 Text Domain: -
@@ -29,3 +29,15 @@ function my_add_next_page_button( $buttons, $id ){
  
 		return $buttons;
 }
+
+// @link http://scribu.net/wordpress/right-way-to-add-custom-quicktags.html
+// Modified to suite for Page break...
+function pagebreak_js() {
+  wp_enqueue_script(
+    'pagebreakjs',
+    plugin_dir_url( __FILE__ ) . 'pagebreak.js',
+    array( 'quicktags' )
+  );
+}
+add_action( 'admin_print_scripts', 'pagebreak_js' );
+
